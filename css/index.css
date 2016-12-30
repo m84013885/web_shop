@@ -1,0 +1,58 @@
+header {
+  border-bottom: 1px solid #ACACAC;
+  padding-bottom: .5rem;
+}
+header > .nav > .nav_box {
+  display: inline-block;
+  width: 33.3%;
+  text-align: center;
+  margin-top: .5rem;
+}
+header > .nav > .nav_box img {
+  width: 65%;
+}
+header > .nav > .nav_box > .nav_btn {
+  margin: .1rem;
+  font-size: .9rem;
+}
+header > .nav > .nav_box > .nav_btn > a {
+  color: #000;
+}
+main > .goods_btn {
+  text-align: right;
+  padding: 0 .5rem;
+  padding-top: 0.2rem;
+}
+main > .goods_box {
+  width: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  padding: .5rem;
+}
+main > .goods_box > .goods_border {
+  border: 1px solid #C5C5C5;
+  border-radius: 8px;
+  box-shadow: 1px 3px 4px #B8B8B8;
+  overflow: hidden;
+}
+main > .goods_box > .goods_border > .img_height > img {
+  border-radius: 4px;
+}
+main > .goods_box > .goods_border > .text {
+  padding: .5rem 0;
+  box-sizing: border-box;
+}
+main > .goods_box > .goods_border > .text > .goods_ib {
+  float: left;
+  text-align: center;
+  width: 50%;
+  box-sizing: border-box;
+  font-size: 1rem;
+}
+main > .goods_box > .goods_border > .text > .goods_ib > span {
+  background-color: #CD364A;
+  color: #fff;
+  padding: 4px;
+  font-size: .7rem;
+  border-radius: 3px;
+}

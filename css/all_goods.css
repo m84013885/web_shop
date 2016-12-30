@@ -1,0 +1,40 @@
+header {
+  background: linear-gradient(to top right, #353763, #331E4A);
+  text-align: center;
+  color: #E6E5E9;
+  font-size: 1.3rem;
+  position: relative;
+}
+header span {
+  position: absolute;
+  left: 5%;
+  color: #ffffff;
+}
+main {
+  position: relative;
+  width: 90%;
+  margin: 0 auto;
+}
+main .nav {
+  margin: 5px 0;
+}
+main .nav > span {
+  position: absolute;
+  right: 0;
+}
+main .for_content div.clearfix {
+  margin-top: 1rem;
+}
+main .for_content div.small {
+  width: 30%;
+}
+main .for_content div.big {
+  width: 60%;
+}
+main .for_content .bottom_img {
+  margin-top: .5rem;
+}
+main .for_content .text {
+  font-size: 1rem;
+  padding: .2rem;
+}

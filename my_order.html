@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=3, minimum-scale=1, user-scalable=no">
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <!-- 启用360浏览器的极速模式(webkit) -->
+    <meta name="renderer" content="webkit">
+    <!-- 避免IE使用兼容模式 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓 -->
+    <meta name="HandheldFriendly" content="true">
+    <!-- 微软的老式浏览器 -->
+    <meta name="MobileOptimized" content="320">
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- 适应移动端end -->
+    <title></title>
+    <link rel="stylesheet" href="css/h5reset.css"/>
+    <link rel="stylesheet" href="css/my_order.css"/>
+
+    <script src="js/vue.min.2.0.js"></script>
+    <script src="js/vue-tap.js"></script>
+    <script src="js/jquery-3.1.1.min.js"></script>
+</head>
+<body>
+    <div id="body">
+        <header>
+            <span><img src="img/my_order/set.png"/></span>
+            我的
+        </header>
+        <div class="head">
+            <div>
+                <img v-bind:src="head_img"/>
+                <img v-bind:src="male_img" class="male"/>
+            </div>
+            <span>{{name}}</span>
+        </div>
+        <main>
+            <h3>
+                <div>
+                    <div>全部订单</div>
+                    <span>查看全部订单>></span>
+                </div>
+            </h3>
+            <div class="my_service clearfix" v-for="item in my_service">
+                <div class="img"><img v-bind:src="item.head"/></div>
+                <div class="text">{{item.text}}</div>
+                <div class="arrow"><img v-bind:src="item.foot"/></div>
+            </div>
+        </main>
+
+        <footer></footer>
+        <div class="dis_none">3</div>
+    </div>
+    <script>
+        var app=new Vue({
+            el:"#body",
+            data:{
+                head_img:"img/service/head.png",
+                name:"姓名",
+                male_img:"img/my_order/man.png",
+                my_service:[
+                    {head:"img/my_order/time.png",text:"待付款",foot:"img/my_order/arrow.png"},
+                    {head:"img/my_order/save.png",text:"待发货",foot:"img/my_order/arrow.png"},
+                    {head:"img/my_order/car.png",text:"待收货",foot:"img/my_order/arrow.png"},
+                    {head:"img/my_order/talk.png",text:"待评价",foot:"img/my_order/arrow.png"},
+                    {head:"img/my_order/money.png",text:"退款/售后",foot:"img/my_order/arrow.png"}
+                ],
+
+                type:[
+                    {img:"img/index/head_bg.png",name:"VR"},
+                    {img:"img/index/head_bg.png",name:"VR"},
+                    {img:"img/index/head_bg.png",name:"VR"},
+                    {img:"img/index/head_bg.png",name:"VR"},
+                    {img:"img/index/head_bg.png",name:"VR"},
+                    {img:"img/index/head_bg.png",name:"VR"}
+                ]
+            },
+            mounted: function () {
+                this.$nextTick(function () {
+                    $("header").height(window.innerHeight *.08+ "px").css("line-height",window.innerHeight *.08+ "px");
+                    $(".head").height(window.innerHeight *.25+ "px");
+                    $("main>h3").height(window.innerHeight *.05+ "px");
+
+                    for(var i=0;i<$(".my_service").length;i++){
+                        $($(".my_service")[i]).height(window.innerHeight *.105+ "px").css("line-height",window.innerHeight *.105+ "px");
+                        $($(".img")[i]).height(window.innerHeight *.105+ "px").css("line-height",window.innerHeight *.105+ "px");
+                        $($(".arrow")[i]).height(window.innerHeight *.105+ "px").css("line-height",window.innerHeight *.105+ "px");
+
+                        $($(".img>img")[i]).height(window.innerHeight *.04+ "px").width(window.innerHeight *.045+ "px");
+                        $($(".arrow>img")[i]).height(window.innerHeight *.045+ "px").width(window.innerHeight *.05+ "px");
+                    }
+
+                    $("footer").load("link/footer.html",function(){
+                        $($(".footer img")[$(".dis_none").last().html()]).attr("src","img/footer/my_r.png")
+                    });
+                })
+            }
+        })
+    </script>
+</body>
+</html>

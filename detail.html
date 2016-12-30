@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=3, minimum-scale=1, user-scalable=no">
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <!-- 启用360浏览器的极速模式(webkit) -->
+    <meta name="renderer" content="webkit">
+    <!-- 避免IE使用兼容模式 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓 -->
+    <meta name="HandheldFriendly" content="true">
+    <!-- 微软的老式浏览器 -->
+    <meta name="MobileOptimized" content="320">
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- 适应移动端end -->
+    <title></title>
+    <link rel="stylesheet" href="css/h5reset.css"/>
+    <link rel="stylesheet" href="css/detail.css"/>
+
+    <script src="js/vue.min.2.0.js"></script>
+    <script src="js/vue-tap.js"></script>
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <!--滑动-->
+    <link rel="stylesheet" href="css/swiper-3.3.1.min.css">
+    <script src="js/swiper-3.3.1.jquery.min.js"></script>
+    <script src="js/swiper.animate1.0.2.min.js"></script>
+    <style>
+
+    </style>
+</head>
+<body>
+    <div id="body">
+        <header>
+            商品详情
+        </header>
+        <div class="border_box">
+            <div class="box">
+                <!--图片轮播-->
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide" v-for="item in goods">
+                            <img v-bind:src="item.img"/>
+                        </div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+                <!-- -->
+            </div>
+        </div>
+        <main>
+            <div class="border_box">
+                <div class="width_box">
+                    <h3>{{good_name}}</h3>
+                    <div class="clearfix">
+                        <div class="fl r_box dev">￥{{price}}</div>
+                        <div class="fr"><img src="img/detail/share.png"/></div>
+                    </div>
+                    <div class="clearfix">
+                        <div class="fl">月消:{{sales}}</div>
+                        <div class="fr">{{place}}</div>
+                    </div>
+                    <div class="clearfix">
+                        <div class="fl r_box"><a href="#parameter">产品参数</a></div>
+                        <div class="fr r_box"><a href="#eval">评价</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="border_box">
+                <div class="see_set">
+                    <div class="r_box p_left">查看套餐</div>
+                    <div class="p_right"><img src="img/detail/down_arrow.png"/></div>
+                </div>
+            </div>
+
+            <div class="images">
+                <div v-for="item in good_img">
+                    <a v-bind:name="item.name"></a>
+                    <img v-bind:src="item.img"/>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script>
+        var app=new Vue({
+            el:"#body",
+            data:{
+                good_name:"引力透镜",
+                price:"10000.00",
+                sales:"1000",
+                place:"上海",
+                goods:[
+                    {img:"img/index/head_bg.png"},
+                    {img:"img/index/head_bg.png"},
+                    {img:"img/index/head_bg.png"}
+                ],
+                good_img:[
+                    {img:"img/index/head_bg.png"},
+                    {img:"img/index/head_bg.png",name:"eval"},
+                    {img:"img/index/head_bg.png",name:"parameter"}
+                ]
+            },
+            mounted: function () {
+                this.$nextTick(function () {
+                    $("header").height(window.innerHeight *.08+ "px").css("line-height",window.innerHeight *.08+ "px");
+                    $(".see_set").height(window.innerHeight *.06+ "px");
+
+                    var mySwiper = new Swiper('.swiper-container',{
+                        pagination : '.swiper-pagination',
+                        paginationClickable :true,
+                        preventClicks : false,
+                        effect : 'flip'
+                    });
+
+                    $('a[href*="#"],area[href*="#"]').click(function() {
+                        if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+                            var $target = $(this.hash);
+                            $target = $target.length && $target || $('[name=' + this.hash.slice(1) + ']');
+                            if ($target.length) {
+                                var targetOffset = $target.offset().top;
+                                $('html,body').animate({
+                                            scrollTop: targetOffset
+                                        },
+                                        1000);
+                                return false;
+                            }
+                        }
+                    });
+                })
+            }
+        })
+    </script>
+</body>
+</html>

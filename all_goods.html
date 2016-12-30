@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=3, minimum-scale=1, user-scalable=no">
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <!-- 启用360浏览器的极速模式(webkit) -->
+    <meta name="renderer" content="webkit">
+    <!-- 避免IE使用兼容模式 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓 -->
+    <meta name="HandheldFriendly" content="true">
+    <!-- 微软的老式浏览器 -->
+    <meta name="MobileOptimized" content="320">
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- 适应移动端end -->
+    <title></title>
+    <link rel="stylesheet" href="css/h5reset.css"/>
+    <link rel="stylesheet" href="css/all_goods.css"/>
+
+    <script src="js/vue.min.2.0.js"></script>
+    <script src="js/vue-tap.js"></script>
+    <script src="js/jquery-3.1.1.min.js"></script>
+</head>
+<body>
+    <div id="body">
+        <header>
+            <a href="goods_type.html"><span>分类</span></a>
+            全部商品
+        </header>
+        <main>
+            <div class="nav">
+                推荐<span>更多>></span>
+            </div>
+
+            <div class="for_content clearfix" v-for="item in goods">
+                <div class="clearfix">
+                    <div class="fl small">
+                        <div class="top_img"><img v-bind:src="item.top.top_img"/></div>
+                        <div class="bottom_img"><img v-bind:src="item.top.bottom_img"/></div>
+                    </div>
+                    <div  class="fr big">
+                        <div class="text text-right">{{item.top.text}}</div>
+                        <div class="big_img"><img v-bind:src="item.top.big_img"/></div>
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <div class="fl big">
+                        <div class="text">{{item.bottom.text}}</div>
+                        <div class="big_img"><img v-bind:src="item.bottom.big_img"/></div>
+                    </div>
+                    <div  class="fr small">
+                        <div class="top_img"><img v-bind:src="item.bottom.top_img"/></div>
+                        <div class="bottom_img"><img v-bind:src="item.bottom.bottom_img"/></div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+
+        <footer></footer>
+        <div class="dis_none">1</div>
+    </div>
+    <script>
+        var app=new Vue({
+            el:"#body",
+            data:{
+                goods:[
+                    {top:{top_img:"img/index/head_bg.png",bottom_img:"img/index/head_bg.png",big_img:"img/index/head_bg.png",text:"AR>>"},bottom:{top_img:"img/index/head_bg.png",bottom_img:"img/index/head_bg.png",big_img:"img/index/head_bg.png",text:"AR>>"}},
+                    {top:{top_img:"img/index/head_bg.png",bottom_img:"img/index/head_bg.png",big_img:"img/index/head_bg.png",text:"AR>>"},bottom:{top_img:"img/index/head_bg.png",bottom_img:"img/index/head_bg.png",big_img:"img/index/head_bg.png",text:"AR>>"}}
+                ]
+            },
+            mounted: function () {
+                this.$nextTick(function () {
+                    $("header").height(window.innerHeight *.08+ "px").css("line-height",window.innerHeight *.08+ "px");
+
+                    for(var i=0;i<$(".for_content>div").length;i++){
+                        $($(".top_img")[i]).height(window.innerHeight *.15+ "px");
+                        $($(".bottom_img")[i]).height(window.innerHeight *.1+ "px");
+                        $($(".big_img")[i]).height(window.innerHeight *.22+ "px");
+                    }
+
+                    $("footer").load("link/footer.html",function(){
+                        $($(".footer img")[$(".dis_none").last().html()]).attr("src","img/footer/all_r.png")
+                    });
+                })
+            }
+        })
+    </script>
+</body>
+</html>

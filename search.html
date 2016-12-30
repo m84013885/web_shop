@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=3, minimum-scale=1, user-scalable=no">
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <!-- 启用360浏览器的极速模式(webkit) -->
+    <meta name="renderer" content="webkit">
+    <!-- 避免IE使用兼容模式 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓 -->
+    <meta name="HandheldFriendly" content="true">
+    <!-- 微软的老式浏览器 -->
+    <meta name="MobileOptimized" content="320">
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- 适应移动端end -->
+    <title></title>
+    <link rel="stylesheet" href="css/h5reset.css"/>
+    <link rel="stylesheet" href="css/search.css"/>
+
+    <script src="js/vue.min.2.0.js"></script>
+    <script src="js/vue-tap.js"></script>
+    <script src="js/jquery-3.1.1.min.js"></script>
+</head>
+<body>
+    <div id="body">
+        <header>
+            <div class="search">
+                <span>
+                    <input type="text" class="search_box" placeholder="搜索" v-on:keyup="search_f" v-model="search"/>
+                    <img v-bind:src="search_icon"/>
+                </span>
+            </div>
+            <div class="search_free clearfix">
+                <div class="search_left">
+                    <div v-tap="{methods:sort_time}" class="time">{{search_time}}</div>
+                    <div v-tap="{methods:sort_sale}" class="sale">{{search_sales}}</div>
+                    <div v-tap="{methods:sort_people}" class="people">{{search_people}}</div>
+                </div>
+                <div class="search_right">
+                    <span>按价格</span>
+                    <input type="number"/>
+                    -
+                    <input type="number"/>
+                    <span class="ok_btn">OK</span>
+                </div>
+            </div>
+        </header>
+        <main>
+            <div class="goods_box" v-for="item in goods" v-bind:style="{display:item.display}">
+                <div class="goods_border">
+                    <div class="img_height">
+                        <img v-bind:src="item.img"/>
+                    </div>
+                    <div class="text clearfix">
+                        <div class="goods_ib">{{item.name}}</div>
+                        <div class="goods_ib last_ib"><span>{{item.price}}</span></div>
+                        <div class="fr sales">已售{{item.sales}}件</div>
+                        <div class="dis_none times">{{item.time}}</div>
+                        <div class="dis_none peoples">{{item.people}}</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script>
+        var app=new Vue({
+            el:"#body",
+            data:{
+                search_icon:"img/search/search.png",
+                search_time:"按时间↑↓",
+                search_sales:"按销量↑↓",
+                search_people:"按人气↑↓",
+                search:"",
+                goods:[
+                    {img:"img/index/head_bg.png",name:"引力透镜",price:"￥1000.00",sales:"100",people:"5",time:"7",display:"inline-block"},
+                    {img:"img/index/head_bg.png",name:"引力透镜",price:"￥1000.00",sales:"50",people:"10",time:"2",display:"inline-block"},
+                    {img:"img/index/head_bg.png",name:"引力透镜",price:"￥1000.00",sales:"500",people:"20",time:"3",display:"inline-block"},
+                    {img:"img/index/head_bg.png",name:"引力透镜",price:"￥1000.00",sales:"1000",people:"11",time:"4",display:"inline-block"},
+                    {img:"img/index/head_bg.png",name:"引力透镜",price:"￥1000.00",sales:"200",people:"80",time:"5",display:"inline-block"}
+                ]
+            },
+            methods:{
+                search_f:function(event){
+                    for(var i=0;i<this.goods.length;i++){
+                        var arr=[];
+                        arr.push(this.goods[i].name);
+                        for(var j=0;j<arr.length;j++){
+                            if(arr[j].search(this.search)==-1) {
+                                this.goods[i].display ="none";
+                            }else{
+                                this.goods[i].display="inline-block";
+                                break;
+                            }
+                        }
+                    }
+                },
+                sort_sale:function(event){
+                    var arrGoods=[];//创建排序数组
+                    var goods=$(".goods_box");//物品数组
+                    var price=[];//价格
+                    for(var i=0;i<$(".sales").length;i++){
+                        var str=$($(".sales")[i]).html().substr(2,$($(".sales")[i]).html().length-2);
+                        price.push(str);
+                    }
+                    var goodsId=$("main")[0];//物品框
+                    for(var i=0;i<goods.length;i++){ //往排序数组塞东西
+                        arrGoods[i]={};
+                        arrGoods[i].price=price[i];
+                        arrGoods[i].index=i;
+                    }
+                    function bubbleSort_down(arr){//倒序冒泡排序的方法
+                        var len=arr.length, tmp;
+                        for(var i=0;i<len-1;i++){
+                            for(var j=0;j<len-1-i;j++){
+                                if(parseFloat(arr[j].price)>parseFloat(arr[j+1].price)){
+                                    tmp = arr[j];
+                                    arr[j]= arr[j+1];
+                                    arr[j+1]= tmp;
+                                }
+                            }
+                        }
+                        return arr;
+                    }
+                    bubbleSort_down(arrGoods);//实行冒泡排序
+                    for(var i = 0;i<arrGoods.length;i++){
+                        var elem=goods[arrGoods[i].index];
+                        goodsId.insertBefore(elem,goodsId.childNodes[0]);
+                    }
+                    $(".sale").addClass("active");
+                    $(".sale").siblings().removeClass("active");
+                },
+                sort_people:function(event){
+                    var arrGoods=[];//创建排序数组
+                    var goods=$(".goods_box");//物品数组
+                    var price=[];//价格
+                    for(var i=0;i<$(".peoples").length;i++){
+                        var str=$($(".peoples")[i]).html();
+                        price.push(str);
+                    }
+                    var goodsId=$("main")[0];//物品框
+                    for(var i=0;i<goods.length;i++){ //往排序数组塞东西
+                        arrGoods[i]={};
+                        arrGoods[i].price=price[i];
+                        arrGoods[i].index=i;
+                    }
+                    function bubbleSort_down(arr){//倒序冒泡排序的方法
+                        var len=arr.length, tmp;
+                        for(var i=0;i<len-1;i++){
+                            for(var j=0;j<len-1-i;j++){
+                                if(parseFloat(arr[j].price)>parseFloat(arr[j+1].price)){
+                                    tmp = arr[j];
+                                    arr[j]= arr[j+1];
+                                    arr[j+1]= tmp;
+                                }
+                            }
+                        }
+                        return arr;
+                    }
+                    bubbleSort_down(arrGoods);//实行冒泡排序
+                    for(var i = 0;i<arrGoods.length;i++){
+                        var elem=goods[arrGoods[i].index];
+                        goodsId.insertBefore(elem,goodsId.childNodes[0]);
+                    }
+                    $(".people").addClass("active");
+                    $(".people").siblings().removeClass("active");
+                },
+                sort_time:function(event) {
+                    var arrGoods = [];//创建排序数组
+                    var goods = $(".goods_box");//物品数组
+                    var price = [];//价格
+                    for (var i = 0; i < $(".times").length; i++) {
+                        var str=$($(".times")[i]).html();
+                        price.push(str);
+                    }
+                    var goodsId = $("main")[0];//物品框
+                    for (var i = 0; i < goods.length; i++) { //往排序数组塞东西
+                        arrGoods[i] = {};
+                        arrGoods[i].price = price[i];
+                        arrGoods[i].index = i;
+                    }
+                    function bubbleSort_down(arr) {//倒序冒泡排序的方法
+                        var len = arr.length, tmp;
+                        for (var i = 0; i < len - 1; i++) {
+                            for (var j = 0; j < len - 1 - i; j++) {
+                                if (parseFloat(arr[j].price) > parseFloat(arr[j + 1].price)) {
+                                    tmp = arr[j];
+                                    arr[j] = arr[j + 1];
+                                    arr[j + 1] = tmp;
+                                }
+                            }
+                        }
+                        return arr;
+                    }
+
+                    bubbleSort_down(arrGoods);//实行冒泡排序
+                    for (var i = 0; i < arrGoods.length; i++) {
+                        var elem = goods[arrGoods[i].index];
+                        goodsId.insertBefore(elem, goodsId.childNodes[0]);
+                    }
+                    $(".time").addClass("active");
+                    $(".time").siblings().removeClass("active");
+                }
+            },
+            mounted: function () {
+                this.$nextTick(function () {
+                    $(".search").height(window.innerHeight *.08+ "px");
+                    $(".img_height").height(window.innerHeight *.20+ "px");
+                    $(".search_box").height(window.innerHeight *.04+ "px");
+
+                    function GetQueryString(name) {
+                        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+                        var r = window.location.search.substr(1).match(reg);
+                        if (r != null)
+                            return (r[2]);
+                        return null;
+                    }
+                    if(GetQueryString("index")==0){
+                        this.$options.methods.sort_time(event);
+                    }else if(GetQueryString("index")==1){
+                        this.$options.methods.sort_sale(event);
+                    }else if(GetQueryString("index")==2){
+                        this.$options.methods.sort_people(event);
+                    }
+                })
+            }
+        })
+    </script>
+</body>
+</html>

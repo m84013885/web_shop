@@ -1,0 +1,57 @@
+header .head {
+  padding-bottom: .5rem;
+  background: url("../img/service/head_bg.png");
+  background-size: 100% 100%;
+  text-align: center;
+  position: relative;
+}
+header .head > img {
+  position: relative;
+  width: 38%;
+  height: 62%;
+  top: 23%;
+}
+main {
+  margin-top: 1.4rem;
+}
+main h3 {
+  text-align: center;
+  border-bottom: 1px solid #7D7D7D;
+  padding-bottom: .8rem;
+}
+main > .content {
+  margin: 1rem 0;
+}
+main > .content > table {
+  width: 100%;
+  text-align: center;
+}
+main > .content > table > thead {
+  font-size: 1.1rem;
+}
+main > .content > table > tbody {
+  font-size: .9rem;
+}
+main > .content > table > tbody .wx_header {
+  width: 20%;
+}
+main > .content > table > tbody .wx_header > img {
+  border-radius: 50%;
+  width: 70%;
+}
+main > .content > table > tbody .service_name {
+  width: 25%;
+}
+main > .content > table > tbody .service_phone {
+  width: 30%;
+}
+main > .content > table > tbody .service_wx {
+  width: 25%;
+}
+main > .content > table tr {
+  border-bottom: 1px solid #CFCFCF;
+}
+main > .content > table td {
+  padding: .7rem 0;
+  vertical-align: middle;
+}

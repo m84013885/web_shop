@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=3, minimum-scale=1, user-scalable=no">
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <!-- 启用360浏览器的极速模式(webkit) -->
+    <meta name="renderer" content="webkit">
+    <!-- 避免IE使用兼容模式 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓 -->
+    <meta name="HandheldFriendly" content="true">
+    <!-- 微软的老式浏览器 -->
+    <meta name="MobileOptimized" content="320">
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- 适应移动端end -->
+    <title></title>
+    <link rel="stylesheet" href="css/h5reset.css"/>
+    <link rel="stylesheet" href="css/index.css"/>
+
+    <script src="js/vue.min.2.0.js"></script>
+    <script src="js/vue-tap.js"></script>
+    <script src="js/jquery-3.1.1.min.js"></script>
+</head>
+<body>
+    <div id="body">
+        <header>
+            <div class="head">
+                <img v-bind:src="head_img"/>
+            </div>
+            <div class="nav">
+                <div v-for="item in nav" class="nav_box">
+                    <img v-bind:src="item.img"/>
+                    <div class="nav_btn">{{item.text}}</div>
+                    <div class="dis_none">{{item.href}}</div>
+                </div>
+            </div>
+        </header>
+        <main>
+            <p class="goods_btn"><a href="search.html?index=2">{{content_btn}}</a></p>
+            <div class="goods_box" v-for="item in goods">
+                <div class="goods_border">
+                    <div class="img_height">
+                        <img v-bind:src="item.img"/>
+                    </div>
+                    <div class="text clearfix">
+                        <div class="goods_ib">{{item.name}}</div>
+                        <div class="goods_ib"><span>{{item.price}}</span></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer></footer>
+        <div class="dis_none">0</div>
+    </div>
+    <script>
+        var app=new Vue({
+            el:"#body",
+            data:{
+                head_img:"img/index/head_bg.png",
+                content_btn:"新品>>",
+                nav:[
+                    {img:"img/index/nav_best.png",text:"热卖榜",href:"search.html?index=1"},
+                    {img:"img/index/nav_sale.png",text:"促销榜",href:"search.html?index=2"},
+                    {img:"img/index/nav_new.png",text:"新上架",href:"search.html?index=0"}
+                ],
+                goods:[
+                    {img:"img/index/head_bg.png",name:"引力透镜",price:"￥1000.00"},
+                    {img:"img/index/head_bg.png",name:"引力透镜",price:"￥1000.00"}
+                ]
+            },
+            mounted: function () {
+                this.$nextTick(function () {
+                    $(".nav_box").click(function(){
+                        window.location=$(this).find(".dis_none").html()
+                    });
+
+                    $(".head").height(window.innerHeight *.3+ "px");
+                    $(".img_height").height(window.innerHeight *.25+ "px");
+
+                    $("footer").load("link/footer.html",function(){
+                        $($(".footer img")[$(".dis_none").last().html()]).attr("src","img/footer/home_r.png")
+                    });
+                })
+            }
+        })
+    </script>
+</body>
+</html>

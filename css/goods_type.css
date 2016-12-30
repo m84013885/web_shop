@@ -1,0 +1,32 @@
+header {
+  background: linear-gradient(to top right, #353763, #331E4A);
+  text-align: center;
+  color: #E6E5E9;
+  font-size: 1.3rem;
+}
+main .big_box {
+  float: left;
+  width: 50%;
+  box-sizing: border-box;
+  padding: 1rem 1.5rem;
+}
+main .big_box > .bg_box {
+  background: linear-gradient(#B2C0D5, #D0C1D6);
+  padding-top: .3rem;
+  padding-bottom: .5rem;
+  border-radius: 5px;
+}
+main .big_box > .bg_box > .name_box {
+  background-color: #D03545;
+  width: 60%;
+  margin: 0 auto;
+  padding: .5rem 0;
+  text-align: center;
+  border-radius: 5px;
+  color: #ffffff;
+}
+main .big_box > .bg_box > .img_box {
+  margin: .3rem auto;
+  border-radius: 5px;
+  overflow: hidden;
+}

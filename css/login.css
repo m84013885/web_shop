@@ -1,0 +1,65 @@
+body {
+  background: url("../img/login/bg.png");
+  background-size: 100% 100%;
+}
+header {
+  text-align: center;
+  position: relative;
+}
+header .head_img {
+  width: 55%;
+  height: 75%;
+  position: absolute;
+  bottom: 10%;
+  right: 0;
+  left: 0;
+  margin: auto;
+}
+main .form_input > .number,
+main .form_input .password {
+  text-align: center;
+}
+main .form_input > .number > input,
+main .form_input .password > input {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 87%;
+  background-color: rgba(155, 167, 177, 0.65);
+  border: none;
+  outline: none;
+  padding: 0 10px;
+  box-sizing: border-box;
+  color: #fff;
+}
+main .form_button > .login,
+main .form_button .join {
+  text-align: center;
+}
+main .form_button > .login > input,
+main .form_button .join > input {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 45%;
+  background-color: #DC3348;
+  outline: none;
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+}
+main > .problem {
+  text-align: center;
+  color: #9FAFBE;
+}
+footer {
+  position: absolute;
+  bottom: 3%;
+  left: 0;
+  right: 0;
+}
+footer > p {
+  color: #DCDBE7;
+  font-size: 1rem;
+  text-align: center;
+}

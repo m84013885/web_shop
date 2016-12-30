@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=3, minimum-scale=1, user-scalable=no">
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <!-- 启用360浏览器的极速模式(webkit) -->
+    <meta name="renderer" content="webkit">
+    <!-- 避免IE使用兼容模式 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓 -->
+    <meta name="HandheldFriendly" content="true">
+    <!-- 微软的老式浏览器 -->
+    <meta name="MobileOptimized" content="320">
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- 适应移动端end -->
+    <title></title>
+    <link rel="stylesheet" href="css/h5reset.css"/>
+    <link rel="stylesheet" href="css/buy_car.css"/>
+
+    <script src="js/vue.min.2.0.js"></script>
+    <script src="js/vue-tap.js"></script>
+    <script src="js/jquery-3.1.1.min.js"></script>
+</head>
+<body>
+    <div id="body">
+        <header>购物车</header>
+        <main>
+            <h5><div>购物车</div></h5>
+
+            <div class="border_box" v-for="item in goods">
+                <div class="good clearfix">
+                    <div class="check">
+                        <div class="my_checkbox" v-tap="{methods:ok_no}"></div>
+                    </div>
+                    <div class="good_img">
+                        <img v-bind:src="item.img"/>
+                    </div>
+                    <div class="text">
+
+                        <div class="clearfix">
+                            <div class="str">
+                                <div class="name">{{item.name}}</div>
+                                <div class="price">￥{{item.price*item.number+".00"}}</div>
+                            </div>
+                            <div class="num">
+                                <img src="img/buy_car/mins.png" v-tap="{methods:mins_num}" class="mins_btn"/>
+                                <span>{{item.number}}</span>
+                                <img src="img/buy_car/plus.png" v-tap="{methods:plus_num}" class="plus_btn"/>
+                            </div>
+                        </div>
+
+                        <div class="introduce">
+                            {{item.introduce}}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+
+        <div class="payment clearfix">
+            <div class="btn">
+                <div class="my_checkbox" v-tap="{methods:ok_no_all}"></div>
+            </div>
+            <div class="btn_text">
+                全选
+            </div>
+            <div class="btn_sumbit">
+                结算
+            </div>
+            <div class="total">
+                合计:<span>￥<b>0</b></span><i>不含运费</i>
+            </div>
+        </div>
+
+        <footer></footer>
+        <div class="dis_none">2</div>
+    </div>
+    <script>
+        var app=new Vue({
+            el:"#body",
+            data:{
+                search_icon:"img/search/search.png",
+                search_time:"按时间↑↓",
+                search_sales:"按销量↑↓",
+                search_people:"按人气↑↓",
+
+                goods:[
+                    {img:"img/index/head_bg.png",name:"引力透镜",price:"1000",number:"9",introduce:"介绍"},
+                    {img:"img/index/head_bg.png",name:"引力透镜",price:"1000",number:"1",introduce:"介绍"},
+                    {img:"img/index/head_bg.png",name:"引力透镜",price:"1000",number:"1",introduce:"介绍"},
+                    {img:"img/index/head_bg.png",name:"引力透镜",price:"1000",number:"1",introduce:"介绍"},
+                    {img:"img/index/head_bg.png",name:"引力透镜",price:"1000",number:"1",introduce:"介绍"}
+                ]
+            },
+            methods:{
+              mins_num:function(event){
+                  var index=$(".mins_btn").index($(event.event.target));
+                  if(this.goods[index].number>1){
+                      this.goods[index].number--;
+                  }
+                  this.$options.methods.total_sum();
+              },
+              plus_num:function(event){
+                  var index=$(".plus_btn").index($(event.event.target));
+                  this.goods[index].number++;
+                  this.$options.methods.total_sum();
+              },
+              ok_no:function(event){
+                  var checkbox=$(".check>.my_checkbox");
+                  if($(event.event.target).attr("class")=="my_checkbox active"){
+                      $(event.event.target).removeClass("active");
+                      $(".my_checkbox").last().removeClass("active");
+                      this.$options.methods.total_sum();
+                  }else{
+                      $(event.event.target).addClass("active");
+                      this.$options.methods.total_sum();
+                      for(var i=0;i<checkbox.length;i++){
+                          if($(checkbox[i]).attr("class")!="my_checkbox active"){
+                              return false
+                          }
+                      }
+                      $(".my_checkbox").addClass("active");
+                  }
+              },
+              ok_no_all:function(event){
+                  if($(event.event.target).attr("class")=="my_checkbox active"){
+                      $(".my_checkbox").removeClass("active");
+                  }else{
+                      $(".my_checkbox").addClass("active");
+                  }
+                  this.$options.methods.total_sum();
+              },
+              total_sum:function(){
+                  var index=[];
+                  var sum=0;
+                  for(var i=0;i<$(".check>.my_checkbox").length;i++){
+                      if($($(".my_checkbox")[i]).attr("class")=="my_checkbox active"){
+                          index.push(i);
+                      }
+                  }
+                  for(var i=0;i<index.length;i++){
+                      var num=parseInt(index[i]);
+                      sum+=parseFloat(app.$data.goods[num].price)*parseFloat(app.$data.goods[num].number);
+                  }
+                  $(".total>span>b").html(sum+".00");
+              }
+            },
+            mounted: function () {
+                this.$nextTick(function () {
+                    $("header").height(window.innerHeight *.08+ "px").css("line-height",window.innerHeight *.08+ "px");
+                    $(".payment").height(window.innerHeight *.08+ "px").css("line-height",window.innerHeight *.08+ "px");
+
+                    for(var i=0;i<$(".good").length;i++){
+                        $($(".good_img")[i]).css({"height":$($(".good_img")[i]).width()+"px"});
+                        $($(".text")[i]).css("height",$($(".good")[i]).height()+"px");
+                        $($(".text")[i]).children().first().css("line-height",$($(".good")[i]).height()/4+"px");
+                        $($(".text")[i]).children().last().css("height",$($(".good")[i]).height()/2+"px");
+                        $($(".num")[i]).css("line-height",$($(".str")[i]).height()+"px");
+                        $($(".check")[i]).css("line-height",$($(".good")[i]).height()+"px");
+                    }
+
+                    $("footer").load("link/footer.html",function(){
+                        $($(".footer img")[$(".dis_none").last().html()]).attr("src","img/footer/car_r.png")
+                    });
+                })
+            }
+        })
+    </script>
+</body>
+</html>

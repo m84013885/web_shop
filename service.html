@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=3, minimum-scale=1, user-scalable=no">
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <!-- 启用360浏览器的极速模式(webkit) -->
+    <meta name="renderer" content="webkit">
+    <!-- 避免IE使用兼容模式 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓 -->
+    <meta name="HandheldFriendly" content="true">
+    <!-- 微软的老式浏览器 -->
+    <meta name="MobileOptimized" content="320">
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- 适应移动端end -->
+    <title></title>
+    <link rel="stylesheet" href="css/h5reset.css"/>
+    <link rel="stylesheet" href="css/service.css"/>
+
+    <script src="js/vue.min.2.0.js"></script>
+    <script src="js/vue-tap.js"></script>
+    <script src="js/jquery-3.1.1.min.js"></script>
+</head>
+<body>
+    <div id="body">
+        <header>
+            <div class="head">
+                <img v-bind:src="head_img"/>
+            </div>
+        </header>
+        <main>
+            <h3>{{text}}</h3>
+            <div class="content">
+                <table>
+                    <thead>
+                        <tr>
+                            <td>头像</td>
+                            <td>名称</td>
+                            <td>客服电话</td>
+                            <td>客服微信</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="item in tbody">
+                            <td class="wx_header"><img v-bind:src="item.img"/></td>
+                            <td class="service_name">{{item.name}}</td>
+                            <td class="service_phone">{{item.phone}}</td>
+                            <td class="service_wx">{{item.wx}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+
+        <footer></footer>
+        <div class="dis_none">4</div>
+    </div>
+    <script>
+        var app=new Vue({
+            el:"#body",
+            data:{
+                head_img:"img/service/head.png",
+                text:"博乐互动娱乐区",
+                tbody:[
+                    {img:"img/index/head_bg.png",name:"引力透镜",phone:"13266632313",wx:"farous"},
+                    {img:"img/index/head_bg.png",name:"引力透镜",phone:"13266632313",wx:"farous"}
+                ],
+
+                content_btn:"新品>>",
+                nav:"",
+                goods:[
+                    {img:"img/index/head_bg.png",name:"引力透镜",price:"￥1000.00"},
+                    {img:"img/index/head_bg.png",name:"引力透镜",price:"￥1000.00"}
+                ]
+            },
+            mounted: function () {
+                this.$nextTick(function () {
+                    $(".head").height(window.innerHeight *.35+ "px");
+
+                    for(var i=0;i<$(".wx_header").length;i++){
+                        $($(".wx_header")[i]).height(window.innerHeight *.08+ "px");
+                    }
+
+                    $("footer").load("link/footer.html",function(){
+                        $($(".footer img")[$(".dis_none").last().html()]).attr("src","img/footer/server_r.png")
+                    });
+                })
+            }
+        })
+    </script>
+</body>
+</html>

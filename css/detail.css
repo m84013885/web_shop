@@ -1,0 +1,90 @@
+header {
+  background: linear-gradient(to top right, #353763, #331E4A);
+  text-align: center;
+  color: #E6E5E9;
+  font-size: 1.3rem;
+  position: relative;
+}
+.swiper-pagination-bullet {
+  width: .6rem!important;
+  height: .6rem!important;
+}
+.swiper-pagination {
+  position: relative!important;
+  bottom: -0.2rem !important;
+}
+.swiper-pagination-bullet-active {
+  background-color: #CD3A46!important;
+}
+.border_box {
+  border-bottom: 1px solid #AAAAAA;
+}
+.border_box > .box {
+  width: 90%;
+  margin: .6rem auto;
+}
+main {
+  color: #9C9C9C;
+}
+main h3 {
+  text-align: center;
+  padding-top: .2rem;
+  color: #9C9C9C;
+  font-weight: normal;
+}
+main .r_box {
+  background-color: #D03847;
+  color: #fff;
+  width: 5.5rem;
+  text-align: center;
+  padding: .2rem 0;
+  border-radius: 5px;
+  font-size: .9rem;
+}
+main > .border_box > .width_box {
+  width: 90%;
+  margin: 0 auto;
+  margin-bottom: .5rem;
+}
+main > .border_box > .width_box .dev {
+  position: relative;
+  top: .4rem;
+}
+main > .border_box > .width_box img {
+  height: 2rem;
+  width: 2rem;
+}
+main > .border_box > .width_box > div.clearfix {
+  padding: .1rem 0;
+}
+main > .border_box > .width_box a {
+  color: #fff;
+}
+main .see_set {
+  position: relative;
+  width: 90%;
+  margin: .2rem auto;
+}
+main .see_set > .p_left {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  height: 1.2rem;
+  margin: auto;
+}
+main .see_set > .p_right {
+  position: absolute;
+  right: 0;
+  top: 5px;
+  bottom: 0;
+  margin: auto;
+  height: 2rem;
+  width: 2rem;
+}
+main > .images {
+  padding: .8rem 1.2rem;
+}
+main > .images > img {
+  margin-top: .3rem;
+}

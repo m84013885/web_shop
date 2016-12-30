@@ -1,0 +1,116 @@
+header .search {
+  background: linear-gradient(to top right, #353763, #331E4A);
+  text-align: center;
+}
+header .search > span {
+  position: relative;
+  display: inline-block;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 60%;
+}
+header .search > span > input {
+  padding: 0 5px;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+  border: none;
+  outline: none;
+  border-radius: 3px;
+}
+header .search > span > img {
+  position: absolute;
+  width: 15%;
+  top: 0;
+  right: 0;
+}
+header .search_free {
+  font-size: .7rem;
+  padding: 8px 0;
+}
+header .search_free .search_left {
+  float: left;
+  width: 55%;
+}
+header .search_free .search_left > div {
+  float: left;
+  width: 33.3%;
+  text-align: center;
+}
+header .search_free .search_left > .active {
+  color: #e4393c;
+}
+header .search_free .search_right {
+  float: left;
+  width: 45%;
+  box-sizing: border-box;
+  text-align: center;
+}
+header .search_free .search_right > input {
+  width: 18%;
+  border: 1px solid #BEBEBE;
+  padding-left: 2px;
+  outline: none;
+  height: .6rem;
+}
+header .search_free .search_right > .ok_btn {
+  border: 1px solid #BEBEBE;
+  padding: 1px 2px;
+  box-sizing: border-box;
+  border-radius: 3px;
+}
+main {
+  width: 95%;
+  margin: 0 auto;
+}
+main > .goods_btn {
+  text-align: right;
+  padding: 0 .5rem;
+}
+main > .goods_box {
+  width: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  padding: .5rem .2rem;
+}
+main > .goods_box > .goods_border {
+  border: 1px solid #C5C5C5;
+  border-radius: 8px;
+  box-shadow: 1px 3px 4px #B8B8B8;
+  overflow: hidden;
+}
+main > .goods_box > .goods_border > .img_height > img {
+  border-radius: 4px;
+}
+main > .goods_box > .goods_border > .text {
+  position: relative;
+  padding: .5rem 0;
+  box-sizing: border-box;
+}
+main > .goods_box > .goods_border > .text > .last_ib {
+  margin-top: 5px;
+}
+main > .goods_box > .goods_border > .text > .goods_ib {
+  float: left;
+  width: 51%;
+  box-sizing: border-box;
+  font-size: .9rem;
+  margin-left: .3rem;
+}
+main > .goods_box > .goods_border > .text > .goods_ib > span {
+  background-color: #CD364A;
+  color: #fff;
+  padding: 5px;
+  font-size: .6rem;
+  border-radius: 3px;
+  display: inline-block;
+  width: 85%;
+  text-align: center;
+}
+main > .goods_box > .goods_border > .text > div.fr {
+  position: absolute;
+  right: 2px;
+  bottom: 2px;
+  font-size: .8rem;
+  color: #E2A6AA;
+}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=3, minimum-scale=1, user-scalable=no">
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <!-- 启用360浏览器的极速模式(webkit) -->
+    <meta name="renderer" content="webkit">
+    <!-- 避免IE使用兼容模式 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓 -->
+    <meta name="HandheldFriendly" content="true">
+    <!-- 微软的老式浏览器 -->
+    <meta name="MobileOptimized" content="320">
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- 适应移动端end -->
+    <title></title>
+    <link rel="stylesheet" href="css/h5reset.css"/>
+    <link rel="stylesheet" href="css/goods_type.css"/>
+
+    <script src="js/vue.min.2.0.js"></script>
+    <script src="js/vue-tap.js"></script>
+    <script src="js/jquery-3.1.1.min.js"></script>
+</head>
+<body>
+    <div id="body">
+        <header>
+            <span>商品分类</span>
+        </header>
+        <main>
+            <div class="big_box" v-for="item in type">
+                <div class="bg_box">
+                    <div class="img_box"><img v-bind:src="item.img"/></div>
+                    <div class="name_box">{{item.name}}</div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script>
+        var app=new Vue({
+            el:"#body",
+            data:{
+                type:[
+                    {img:"img/index/head_bg.png",name:"VR"},
+                    {img:"img/index/head_bg.png",name:"VR"},
+                    {img:"img/index/head_bg.png",name:"VR"},
+                    {img:"img/index/head_bg.png",name:"VR"},
+                    {img:"img/index/head_bg.png",name:"VR"},
+                    {img:"img/index/head_bg.png",name:"VR"}
+                ]
+            },
+            mounted: function () {
+                this.$nextTick(function () {
+                    $("header").height(window.innerHeight *.08+ "px").css("line-height",window.innerHeight *.08+ "px");
+
+                    for(var i=0;i<$(".img_box").length;i++){
+                        $($(".img_box")[i]).height(window.innerHeight *.17+ "px").width(window.innerHeight *.17+ "px");
+                    }
+                })
+            }
+        })
+    </script>
+</body>
+</html>

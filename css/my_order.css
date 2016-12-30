@@ -1,0 +1,106 @@
+header {
+  background: linear-gradient(to top right, #353763, #331E4A);
+  text-align: center;
+  color: #E6E5E9;
+  font-size: 1.3rem;
+  position: relative;
+  box-sizing: border-box;
+}
+header > span {
+  position: absolute;
+  right: 3%;
+}
+header > span > img {
+  vertical-align: middle;
+  width: 65%;
+  position: relative;
+  top: -2px;
+}
+.head {
+  padding-bottom: .5rem;
+  background: url("../img/service/head_bg.png");
+  background-size: 100% 100%;
+  text-align: center;
+  position: relative;
+  box-sizing: border-box;
+}
+.head > div {
+  position: relative;
+  display: inline-block;
+  width: 27%;
+  height: 61%;
+  top: 23%;
+  border-radius: 50%;
+}
+.head > div > .male {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 30%;
+  height: 30%;
+}
+.head > span {
+  position: absolute;
+  bottom: .5rem;
+  left: 0;
+  right: 0;
+  color: #fff;
+  font-size: 1.4rem;
+}
+main h3 {
+  border-bottom: 1px solid #878787;
+  position: relative;
+  padding: .5rem 0;
+  box-sizing: border-box;
+}
+main h3 > div {
+  width: 90%;
+  margin: 0 auto;
+}
+main h3 > div > div {
+  position: relative;
+  top: 50%;
+  transform: translateY(20%);
+  display: inline-block;
+}
+main h3 > div > span {
+  position: absolute;
+  right: 1rem;
+  bottom: .5rem;
+  font-size: .8rem;
+  color: #5E5E5E;
+}
+main > .my_service {
+  border-bottom: 1px solid #CECECE;
+  box-sizing: border-box;
+}
+main > .my_service .img {
+  float: left;
+  width: 20%;
+  position: relative;
+}
+main > .my_service .img > img {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+}
+main > .my_service .text {
+  float: left;
+  width: 30%;
+}
+main > .my_service .arrow {
+  float: left;
+  width: 50%;
+  text-align: right;
+  position: relative;
+}
+main > .my_service .arrow > img {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 10%;
+  margin: auto;
+}
